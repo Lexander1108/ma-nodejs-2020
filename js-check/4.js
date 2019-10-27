@@ -1,0 +1,22 @@
+// Створити новий об’єкт різними способами (мінімум 2 способа). Присвоїти кожному об’єкту параметр
+// ‘name’, що буде містити унікальне ім’я (наприклад, 'Object A', 'Object B'). Вивести в консоль ці об’єкти за
+// допомогою console.log() .
+
+let user = {
+    name: 'Alex'
+}
+console.log('This is first method: \n', user)
+
+let smartphone = {
+    name: 'Samsung'
+}
+console.log(smartphone)
+
+let car = new Object()
+car.name = 'Honda'
+console.log('This is second method: \n', car)
+
+let plane = new Object()
+plane.name = 'Messerschmitt'
+console.log(plane)
+ 
