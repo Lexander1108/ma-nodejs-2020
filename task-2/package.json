@@ -19,15 +19,17 @@
   "husky": "^3.0.9"
  },
  "scripts": {
-  "test": "echo \"Error: no test specified\" && exit 1",
-  "fixer": "npx eslint src/**"
+  "start": "node index.js",
+  "lint": "npx eslint src/**",
+  "lint:fix": "npx eslint src/** --fix",
+  "test": "echo \"Error: no test specified\" && exit 1"
  },
  "author": "Lexander1108",
  "license": "ISC",
  "husky": {
   "hooks": {
-   "pre-commit": "npm run fixer",
-   "pre-push": "npx eslint src/** --fix"
+   "pre-commit": "npm run lint:fix",
+   "pre-push": "npm run lint"
   }
  }
 }
