@@ -1,33 +1,33 @@
 {
-  "name": "src",
-  "version": "1.0.0",
-  "description": "homework_task1",
-  "main": "index.js",
-  "dependencies": {
-    "editorconfig": "^0.15.3",
-    "nanoid": "^2.1.6"
-  },
-  "devDependencies": {
-    "eslint": "^6.6.0",
-    "eslint-config": "^0.3.0",
-    "eslint-config-airbnb": "^18.0.1",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-config-prettier": "^6.5.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-prettier": "^3.1.1",
-    "prettier": "^1.19.1",
-    "husky": "^3.0.9"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "fixer": "npx eslint src/** --fix"
-  },
-  "author": "Lexander1108",
-  "license": "ISC",
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run fixer",
-      "pre-push": "YOUR_COMMAND_HERE"
-    }
+ "name": "src",
+ "version": "1.0.0",
+ "description": "homework_task1",
+ "main": "index.js",
+ "dependencies": {
+  "editorconfig": "^0.15.3",
+  "nanoid": "^2.1.6"
+ },
+ "devDependencies": {
+  "eslint": "^6.6.0",
+  "eslint-config": "^0.3.0",
+  "eslint-config-airbnb": "^18.0.1",
+  "eslint-config-airbnb-base": "^14.0.0",
+  "eslint-config-prettier": "^6.5.0",
+  "eslint-plugin-import": "^2.18.2",
+  "eslint-plugin-prettier": "^3.1.1",
+  "prettier": "^1.19.1",
+  "husky": "^3.0.9"
+ },
+ "scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "fixer": "npx eslint src/**"
+ },
+ "author": "Lexander1108",
+ "license": "ISC",
+ "husky": {
+  "hooks": {
+   "pre-commit": "npm run fixer",
+   "pre-push": "npx eslint src/** --fix"
   }
+ }
 }
