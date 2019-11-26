@@ -1,9 +1,9 @@
-const sum = require('./task1.js');
-const mars = require('./task2.js');
-const timeOutToPromise = require('./task3.js');
+const sum = require('./task1');
+const mars = require('./task2');
+const timeOutToPromise = require('./task3');
 
 module.exports = {
-    sum,
-    mars,
-    timeOutToPromise
+  sum,
+  mars,
+  timeOutToPromise,
 };
