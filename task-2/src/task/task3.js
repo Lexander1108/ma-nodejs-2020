@@ -1,10 +1,9 @@
 function timeOutToPromise(time, text) {
- return new Promise((resolve) => {
-  setTimeout(() => {
-   resolve();
-   console.log(text);
-  }, time);
- });
+	return new Promise((resolve) => {
+		setTimeout(() => {
+			resolve(text);
+		}, time);
+	});
 }
 
-module.exports = timeOutToPromise;
+module.exports = timeOutToPromise(3000, 'some text');

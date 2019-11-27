@@ -3,7 +3,7 @@ const mars = require('./task2');
 const timeOutToPromise = require('./task3');
 
 module.exports = {
- sum,
- mars,
- timeOutToPromise,
+	sum,
+	mars,
+	timeOutToPromise
 };
