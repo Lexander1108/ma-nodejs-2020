@@ -1,18 +1,23 @@
 function throwDice(min, max) {
-	let random = Math.random() * (max - min) + min;
-	return Math.round(random);
+	const random = Math.floor(Math.random() * (max - min) + min);
+	if (random === 0) {
+		// console.log('Lost dice');
+		return Error('Lost dice ');
+	} else {
+		return random;
+	}
 }
 
 let firstNumber;
 let secondNumber;
 
 setTimeout(() => {
-	firstNumber = throwDice(1, 6);
+	firstNumber = throwDice(0, 6);
 	console.log(firstNumber);
 }, 700);
 
 setTimeout(() => {
-	secondNumber = throwDice(1, 6);
+	secondNumber = throwDice(0, 6);
 	console.log(secondNumber);
 }, 2000);
 
