@@ -40,3 +40,4 @@ async function boot() {
 }
 
 boot();
+module.exports = throwDiceAfter();
