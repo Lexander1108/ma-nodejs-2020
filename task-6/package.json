@@ -20,6 +20,7 @@
  },
  "scripts": {
   "start": "node index.js",
+  "start:with-params": "$env:RATE = 300; $env:LIMIT = 5000; node index.js",
   "lint": "npx eslint src/**",
   "lint:fix": "npx eslint src/** --fix",
   "test": "echo \"Error: no test specified\" && exit 1"
