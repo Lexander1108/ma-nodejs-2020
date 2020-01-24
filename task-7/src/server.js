@@ -1,7 +1,6 @@
-const { limitController, metricsController, defaultController } = require('./controllers.js');
-
 const http = require('http');
 const url = require('url');
+const { limitController, metricsController, defaultController } = require('./controllers.js');
 
 const PORT = 52420;
 

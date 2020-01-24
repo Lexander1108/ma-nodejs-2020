@@ -1,5 +1,6 @@
 const url = require('url');
 const { systemStatus } = require('./systemStatus.js');
+
 const getSystemStatus = systemStatus();
 
 let ENV_LIMIT = 3300;
@@ -9,6 +10,11 @@ function parseBody(req, callback) {
  req
   .on('data', (chunk) => body.push(chunk))
   .on('end', () => callback(JSON.parse(Buffer.concat(body).toString())));
+}
+
+function defaultController(req, res) {
+ res.write(JSON.stringify({ serverStatus: 'working' }));
+ res.end();
 }
 
 function limitController(req, res) {
@@ -33,11 +39,10 @@ function limitController(req, res) {
 }
 
 function metricsController(req, res) {
+ const { filter } = url.parse(req.url, true).query;
+ const allowedFilters = ['total', 'free', 'allocated'];
  switch (req.method) {
   case 'GET':
-   const { filter } = url.parse(req.url, true).query;
-   const allowedFilters = ['total', 'free', 'allocated'];
-
    if (filter && !allowedFilters.includes(filter)) {
     res.write(
      JSON.stringify({
@@ -86,11 +91,6 @@ function metricsController(req, res) {
   default:
    defaultController(req, res);
  }
-}
-
-function defaultController(req, res) {
- res.write(JSON.stringify({ serverStatus: 'working' }));
- res.end();
 }
 
 module.exports = { limitController, metricsController, defaultController };
