@@ -1,41 +1,31 @@
-const { startServer } = require('../server/server');
-const rax = require('retry-axios');
 const axios = require('axios');
+const retry = require('retry');
+const { startServer } = require('../server/server');
+
 startServer(3000);
 
-async function main() {
-	const interceptorId = rax.attach();
-	const res = await axios({
-		method: 'GET',
-		url: 'http://localhost:3000/metrics',
-		raxConfig: {
-			retry: 30,
-			noResponseRetries: 2,
-			retryDelay: 1000,
+function axiosClient(TIME) {
+ setInterval(() => {
+  const operation = retry.operation({
+   retries: 30,
+   factor: 2,
+   minTimeout: 100,
+   randomize: false,
+  });
 
-			statusCodesToRetry: [ [ 200, 500 ] ],
-
-			onRetryAttempt: (err) => {
-				const cfg = rax.getConfig(err);
-				console.log(`Retry attempt #${cfg.currentRetryAttempt}`);
-			}
-		}
-	});
-	console.clear();
-	console.log(res.data);
+  operation.attempt(async (currentAttempt) => {
+   try {
+    const res = await axios.get('http://localhost:3000/metrics');
+    console.clear();
+    console.log(`status: ${res.status}, res.data`);
+   } catch (error) {
+    if (operation.retry(error)) {
+     console.clear();
+     console.error('Error: ', error.message, currentAttempt);
+    }
+   }
+  });
+ }, TIME);
 }
-
-function retry(func, attempt) {
-	const maxAttempts = 30;
-	try {
-		func();
-	} catch (err) {
-		if (attempt >= maxAttempts) {
-			throw new Error('Failed after attempts');
-		}
-		retry(func, attempt + 1);
-	}
-}
-
-retry(main, 30);
-main().catch(console.log);
+axiosClient(10000);
+module.exports = { axiosClient };
